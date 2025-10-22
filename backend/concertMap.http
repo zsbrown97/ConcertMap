@@ -1,0 +1,6 @@
+@concertMap_HostAddress = http://localhost:5187
+
+GET {{concertMap_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

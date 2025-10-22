@@ -1,0 +1,37 @@
+### .NET ###
+.idea/ 
+bin/
+obj/
+*.DotSettings.user
+/shelf/
+/workspace.xml
+/.idea.YahtzeeLeaderboard.iml
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
+
+### Sveltekit ###
+node_modules
+.netlify
+.output
+.vercel
+.wrangler
+**/.svelte-kit
+**/build
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Env ###
+.env
+.env.*
+!.env.example
+!.env.test
+
+### Vite ###
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
