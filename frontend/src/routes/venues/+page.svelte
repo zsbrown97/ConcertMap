@@ -2,13 +2,19 @@
     export let data;
 
     const {venues} = data;
+    let latlng: number[][] = []
+
+    venues.forEach((v) => {
+        latlng.push([v.latitude, v.longitude])
+    })
 </script>
 
-{#each venues as v}
+{#each latlng as x}
 <h1>
-    {v.name}
+    {x[0]} - {x[1]}
 </h1>
 {/each}
+
 
 
 <style lang="postcss">
