@@ -13,23 +13,22 @@
         venues = venueData;
    
         const L = await import('leaflet');
+        const map = L.map(mapContainer);
 
-        const map = L.map(mapContainer).setView([35, -100], 5);
+        let bounds = L.latLngBounds([])
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        L.marker([38, -122])
-            .addTo(map)
-            .bindPopup('Hello from SvelteKit + Leaflet!')
-            .openPopup();
-
         venues.forEach((v) => {
             L.marker([v.latitude, v.longitude])
                 .bindPopup(v.name)
                 .addTo(map);
+            bounds.extend([v.latitude, v.longitude])
         })
+
+        map.fitBounds(bounds)
     });
 
 </script>
@@ -38,7 +37,7 @@
     class="
         border
         border-gray-300
-        h-[400px]
+        h-[600px]
         rounded-2xl
         shadow-md
         w-full 
