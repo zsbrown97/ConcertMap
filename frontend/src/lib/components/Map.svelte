@@ -37,7 +37,7 @@
     class="
         border
         border-gray-300
-        h-[600px]
+        h-[40vh]
         rounded-2xl
         shadow-md
         w-full 

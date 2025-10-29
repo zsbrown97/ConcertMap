@@ -1,5 +1,6 @@
 <script lang="ts">
     import Map from "$lib/components/Map.svelte";
+    import Table from "$lib/components/Table.svelte";
 </script>
 
 
@@ -7,6 +8,7 @@
 
     <h1 class="text-3xl font-bold underline">Welcome to SvelteKit</h1>
     <Map />
+    <Table />
 </div>
 
 <style lang="postcss">
