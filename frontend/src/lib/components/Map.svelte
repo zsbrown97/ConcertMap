@@ -1,9 +1,17 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { getAllVenues } from '$lib/api/venues';
 
     let mapContainer: HTMLDivElement;
 
+    let venues: any[] = [];
+
     onMount(async () => {
+        const [venueData] = await Promise.all([
+            getAllVenues(fetch)
+        ]);
+        venues = venueData;
+   
         const L = await import('leaflet');
 
         const map = L.map(mapContainer).setView([37.7749, -122.4194], 3);
@@ -16,7 +24,14 @@
             .addTo(map)
             .bindPopup('Hello from SvelteKit + Leaflet!')
             .openPopup();
+
+        venues.forEach((v) => {
+            L.marker([v.latitude, v.longitude])
+                .bindPopup(v.name)
+                .addTo(map);
+        })
     });
+
 </script>
 
 <div bind:this={mapContainer}
@@ -28,4 +43,4 @@
         shadow-md
         w-full 
     "
-></div>
+/>
