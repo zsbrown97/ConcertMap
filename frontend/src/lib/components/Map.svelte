@@ -14,7 +14,7 @@
    
         const L = await import('leaflet');
 
-        const map = L.map(mapContainer).setView([37.7749, -122.4194], 3);
+        const map = L.map(mapContainer).setView([35, -100], 5);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
