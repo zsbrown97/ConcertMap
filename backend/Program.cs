@@ -11,6 +11,7 @@ builder.Services.AddControllers();
 
 // AddScoped services here
 builder.Services.AddScoped<IVenueService, VenueService>();
+builder.Services.AddScoped<IConcertService, ConcertService>();
 
 builder.Services.AddCors(options =>
 {

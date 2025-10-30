@@ -5,17 +5,17 @@ namespace ConcertMap.Dtos
     public class VenueDto
     {
         [Required]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
-        public string name { get; set; }
-        public string? previous_names { get; set; }
+        public string Name { get; set; }
+        public string? PreviousNames { get; set; }
         [Required]
-        public string city { get; set; }
+        public string City { get; set; }
         [Required]
-        public string state { get; set; }
+        public string State { get; set; }
         [Required]
-        public double latitude { get; set; }
+        public double Latitude { get; set; }
         [Required]
-        public double longitude { get; set; }
+        public double Longitude { get; set; }
     }
 }

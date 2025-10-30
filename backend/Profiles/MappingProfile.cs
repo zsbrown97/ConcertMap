@@ -11,7 +11,6 @@ namespace ConcertMap.Profiles
         {
             // Venue 
             CreateMap<Venue, VenueDto>().ReverseMap();
-            
 
         }
     }
