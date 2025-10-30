@@ -14,5 +14,6 @@ namespace ConcertMap.Models
 
         public Venue Venue { get; set; } = null!;
         public ICollection<Headliner> Headliners { get; set; } = new List<Headliner>();
+        public ICollection<Opener> Openers { get; set; } = new List<Opener>();
     }
 }

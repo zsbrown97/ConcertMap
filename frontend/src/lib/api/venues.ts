@@ -15,8 +15,3 @@ export async function getAllVenues(fetch: typeof window.fetch) {
     const res = await fetch(`${API_URL}`);
     return res.json();
 }
-
-export async function getVenues(): Promise<Venue> {
-    const res = (await fetch(`${API_URL}`)).json();
-    return res;
-}

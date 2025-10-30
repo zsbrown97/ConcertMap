@@ -10,6 +10,7 @@ namespace ConcertMap.Data
         public DbSet<Band> Bands => Set<Band>();
         public DbSet<Concert> Concerts => Set<Concert>();
         public DbSet<Headliner> Headliners => Set<Headliner>();
+        public DbSet<Opener> Openers => Set<Opener>();
         public DbSet<Venue> Venues => Set<Venue>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +27,19 @@ namespace ConcertMap.Data
                 .HasOne(h => h.Band)
                 .WithMany()
                 .HasForeignKey(h => h.BandId);
+            
+            modelBuilder.Entity<Opener>()
+                .HasKey(o => new { o.ConcertId, o.BandId});
+            
+            modelBuilder.Entity<Opener>()
+                .HasOne(o => o.Concert)
+                .WithMany(c => c.Openers)
+                .HasForeignKey(o => o.ConcertId);
+            
+            modelBuilder.Entity<Headliner>()
+                .HasOne(o => o.Band)
+                .WithMany()
+                .HasForeignKey(o => o.BandId);
         }
 
         /*

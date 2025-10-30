@@ -25,12 +25,15 @@ namespace ConcertMap.Services
                 var concerts = await _context.Concerts
                     .Include(c => c.Venue)
                     .Include(c => c.Headliners)
-                    .ThenInclude(h => h.Band)
+                        .ThenInclude(h => h.Band)
+                    .Include(c => c.Openers)
+                        .ThenInclude(o => o.Band)
                     .Select(c => new ConcertSummaryDto
                     {
                         Date = c.Date,
                         VenueName = c.Venue.Name,
-                        Headliners = c.Headliners.Select(h => h.Band.Name).ToList()
+                        Headliners = c.Headliners.Select(h => h.Band.Name).ToList(),
+                        Openers =  c.Openers.Select(o => o.Band.Name).ToList(),
                     })
                     .AsNoTracking()
                     .ToListAsync();
