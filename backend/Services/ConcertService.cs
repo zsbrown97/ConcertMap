@@ -28,6 +28,7 @@ namespace ConcertMap.Services
                         .ThenInclude(h => h.Band)
                     .Include(c => c.Openers)
                         .ThenInclude(o => o.Band)
+                    .OrderBy(c => c.Date)
                     .Select(c => new ConcertSummaryDto
                     {
                         Date = c.Date.ToString("MM-dd-yyyy"),
