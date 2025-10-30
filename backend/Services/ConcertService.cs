@@ -30,7 +30,7 @@ namespace ConcertMap.Services
                         .ThenInclude(o => o.Band)
                     .Select(c => new ConcertSummaryDto
                     {
-                        Date = c.Date,
+                        Date = c.Date.ToString("MM-dd-yyyy"),
                         VenueName = c.Venue.Name,
                         Headliners = c.Headliners.Select(h => h.Band.Name).ToList(),
                         Openers =  c.Openers.Select(o => o.Band.Name).ToList(),

@@ -1,6 +1,6 @@
 <script lang="ts">
     import Map from "$lib/components/Map.svelte";
-    import ConcertTable from "$lib/components/ConcertTable.svelte";
+    import ConcertTable from "$lib/components/ConcertTable/ConcertTable.svelte";
 
 </script>
 
