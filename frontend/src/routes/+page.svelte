@@ -1,14 +1,10 @@
 <script lang="ts">
     import Map from "$lib/components/Map.svelte";
-    import Table from "$lib/components/Table.svelte";
 </script>
 
-
 <div class="p-6 space-y-4">
-
-    <h1 class="text-3xl font-bold underline">Welcome to SvelteKit</h1>
+    <h1 class="text-3xl font-bold underline">Concert Map</h1>
     <Map />
-    <Table />
 </div>
 
 <style lang="postcss">

@@ -37,9 +37,10 @@
     class="
         border
         border-gray-300
-        h-[40vh]
+        h-[50vh]
         rounded-2xl
         shadow-md
         w-full 
     "
-/>
+>
+</div>
