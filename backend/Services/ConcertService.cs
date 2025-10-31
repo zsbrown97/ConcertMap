@@ -44,7 +44,7 @@ namespace ConcertMap.Services
         {
             try
             {
-                return await _context.Concerts
+                var concerts = await _context.Concerts
                     .Include(c => c.Venue)
                     .Include(c => c.Headliners)
                         .ThenInclude(h => h.Band)
@@ -55,15 +55,10 @@ namespace ConcertMap.Services
                         c.Openers.Any(o => o.BandId == bandId)
                     )
                     .OrderBy(c => c.Date)
-                    .Select(c => new ConcertSummaryDto
-                    {
-                        Date = c.Date.ToString("MM-dd-yyyy"),
-                        VenueName = c.Venue.Name,
-                        Headliners = c.Headliners.Select(h => h.Band.Name).ToList(),
-                        Openers = c.Openers.Select(o => o.Band.Name).ToList(),
-                    })
                     .AsNoTracking()
                     .ToListAsync();
+                
+                return _mapper.Map<IEnumerable<ConcertSummaryDto>>(concerts);
             }
             catch (Exception e)
             {
