@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 using ConcertMap.Data;
@@ -9,32 +10,29 @@ namespace ConcertMap.Services
     public class ConcertService : IConcertService
     {
         private readonly ConcertMapContext _context;
+        private readonly IMapper _mapper;
 
-        public ConcertService(ConcertMapContext context)
+        public ConcertService(ConcertMapContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<ConcertSummaryDto>> GetConcertSummariesAsync()
         {
             try
             { 
-                return await _context.Concerts
+                var concerts = await _context.Concerts
                     .Include(c => c.Venue)
                     .Include(c => c.Headliners)
                         .ThenInclude(h => h.Band)
                     .Include(c => c.Openers)
                         .ThenInclude(o => o.Band)
                     .OrderBy(c => c.Date)
-                    .Select(c => new ConcertSummaryDto
-                    {
-                        Date = c.Date.ToString("MM-dd-yyyy"),
-                        VenueName = c.Venue.Name,
-                        Headliners = c.Headliners.Select(h => h.Band.Name).ToList(),
-                        Openers =  c.Openers.Select(o => o.Band.Name).ToList(),
-                    })
                     .AsNoTracking()
                     .ToListAsync();
+                
+                return _mapper.Map<IEnumerable<ConcertSummaryDto>>(concerts);
             }
             catch (Exception e)
             {
