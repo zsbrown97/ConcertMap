@@ -22,5 +22,13 @@ namespace ConcertMap.Controllers
             var result = await _concertService.GetConcertSummariesAsync();
             return Ok(result);
         }
+
+        [HttpGet("{bandId}")]
+        public async Task<ActionResult<ConcertSummaryDto>> GetConcertSummariesByBand(int bandId)
+        {
+            var result = await _concertService.GetConcertSummariesByBandAsync(bandId);
+            return Ok(result);
+        }
+        
     }
 }
