@@ -22,5 +22,12 @@ namespace ConcertMap.Controllers
             var result = await _venueService.GetAllVenuesAsync();
             return Ok(result);
         }
+
+        [HttpGet("{bandId}")]
+        public async Task<ActionResult<IEnumerable<VenueDto>>> GetVenuesByBandId(int bandId)
+        {
+            var result = await _venueService.GetVenuesByBandIdAsync(bandId);
+            return Ok(result);
+        }
     }
 }

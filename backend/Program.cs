@@ -2,11 +2,13 @@ using Microsoft.EntityFrameworkCore;
 
 using ConcertMap.Data;
 using ConcertMap.Interfaces;
+using ConcertMap.Profiles;
 using ConcertMap.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddControllers();
 
 // AddScoped services here

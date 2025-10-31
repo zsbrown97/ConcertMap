@@ -31,5 +31,25 @@ namespace ConcertMap.Services
                 throw new Exception("An error occurred while getting all venues: " + e.Message);
             }
         }
+
+        public async Task<IEnumerable<VenueDto>> GetVenuesByBandIdAsync(int bandId)
+        {
+            try
+            {
+                var venues = await _context.Concerts
+                    .Where(c => c.Headliners.Any(h => h.BandId == bandId) ||
+                                c.Openers.Any(o => o.BandId == bandId))
+                    .Select(c => c.Venue)
+                    .Distinct()
+                    .AsNoTracking()
+                    .ToListAsync();
+                
+                return _mapper.Map<IEnumerable<VenueDto>>(venues);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("An error occurred while getting venues: " + e.Message);
+            }
+        }
     }
 }
