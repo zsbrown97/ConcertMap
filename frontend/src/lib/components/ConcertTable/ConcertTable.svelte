@@ -33,18 +33,20 @@
             ">
                 <tr class="hover:bg-green-100">
                     <th class="text-left px-4 py-2">Date</th>
-                    <th class="text-left px-4 py-2">Band</th>
-                    <th class="text-left px-4 py-2">Openers</th>
                     <th class="text-left px-4 py-2">Venue</th>
+                    <th class="text-left px-4 py-2">Headliners</th>
+                    <th class="text-left px-4 py-2">Openers</th>
+
                 </tr>
             </thead>
             <tbody>
                 {#each concertSummaries as c}
                     <tr class="border-t hover:bg-green-100">
                         <td class="px-4 py-2">{c.date}</td>
+                        <td class="px-4 py-2">{c.venueName}</td>
                         <td class="px-4 py-2">{c.headliners}</td>
                         <td class="px-4 py-2">{c.openers ?? '-'}</td>
-                        <td class="px-4 py-2">{c.venueName}</td>
+                        
                     </tr>
                 {/each}
             </tbody>
