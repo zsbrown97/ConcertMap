@@ -2,10 +2,7 @@
     import { onMount } from 'svelte'
     import { getConcertSummaries } from '$lib/api/concerts';
 
-    import * as Table from '$lib/components/ui/table/index.js';
-
     let concertSummaries = []
-
 
     onMount(async () => {
         const [concertData] = await Promise.all([getConcertSummaries(fetch)]);
@@ -23,23 +20,25 @@
     shadow-md
     w-full 
 ">
-    <Table.Root>
-        <Table.Header class="bg-background sticky top-0 z-10">
-            <Table.Row>
-                <Table.Head>Date</Table.Head>
-                <Table.Head>Band</Table.Head>
-                <Table.Head>Venue</Table.Head>
-            </Table.Row>
-        </Table.Header>
 
-        <Table.Body>
-            {#each concertSummaries as c}
-                <Table.Row>
-                    <Table.Cell>{c.date}</Table.Cell>
-                    <Table.Cell>{c.headliners}</Table.Cell>
-                    <Table.Cell>{c.venueName}</Table.Cell>
-                </Table.Row>
-            {/each}
-        </Table.Body>
-    </Table.Root>
+    <div class="h-full overflow-auto">
+        <table class="border-collapse min-w-full" >
+            <thead class="bg-white sticky top-0 z-10">
+                <tr>
+                    <th class="text-left px-4 py-2">Date</th>
+                    <th class="text-left px-4 py-2">Band</th>
+                    <th class="text-left px-4 py-2">Venue</th>
+                </tr>
+            </thead>
+            <tbody>
+                {#each concertSummaries as c}
+                    <tr class="border-t">
+                        <td class="px-4 py-2">{c.date}</td>
+                        <td class="px-4 py-2">{c.headliners}</td>
+                        <td class="px-4 py-2">{c.venueName}</td>
+                    </tr>
+                {/each}
+            </tbody>
+        </table>
+    </div>
 </div>
