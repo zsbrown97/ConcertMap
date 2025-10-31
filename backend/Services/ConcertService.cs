@@ -1,4 +1,3 @@
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 using ConcertMap.Data;
@@ -10,12 +9,10 @@ namespace ConcertMap.Services
     public class ConcertService : IConcertService
     {
         private readonly ConcertMapContext _context;
-        private readonly IMapper _mapper;
 
-        public ConcertService(ConcertMapContext context, IMapper mapper)
+        public ConcertService(ConcertMapContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public async Task<IEnumerable<ConcertSummaryDto>> GetConcertSummariesAsync()
