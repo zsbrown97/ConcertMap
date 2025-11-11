@@ -6,8 +6,11 @@
 
 <div class="p-6 space-y-4">
     <h1 class="text-3xl font-bold underline">Concert Map</h1>
-    <Map />
-    <ConcertTable />
+    <div class="flex flex-row">
+        <ConcertTable />
+        <Map />
+    </div>
+
 </div>
 
 <style lang="postcss">

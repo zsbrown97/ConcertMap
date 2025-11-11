@@ -14,11 +14,11 @@
 <div class="
     border
     border-gray-300
-    h-[40vh]
+    h-[90vh]
     overflow-auto
     rounded-2xl
     shadow-md
-    w-full 
+    w-[50vw] 
 ">
 
     <div class="h-full overflow-auto">
