@@ -1,4 +1,5 @@
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 using ConcertMap.Data;
@@ -36,15 +37,22 @@ namespace ConcertMap.Services
         {
             try
             {
-                var venues = await _context.Concerts
+                var concertVenuesQuery = _context.Concerts
                     .Where(c => c.Headliners.Any(h => h.BandId == bandId) ||
                                 c.Openers.Any(o => o.BandId == bandId))
-                    .Select(c => c.Venue)
+                    .Select(c => c.Venue);
+                var festivalVenuesQuery = _context.Festivals
+                    .Where(f => f.FestivalBands.Any(b => b.BandId == bandId))
+                    .Select(f => f.Venue);
+                
+                var combinedVenueQuery = await concertVenuesQuery
+                    .Union(festivalVenuesQuery)
+                    .ProjectTo<VenueDto>(_mapper.ConfigurationProvider)
                     .Distinct()
                     .AsNoTracking()
                     .ToListAsync();
                 
-                return _mapper.Map<IEnumerable<VenueDto>>(venues);
+                return combinedVenueQuery;
             }
             catch (Exception e)
             {
