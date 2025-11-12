@@ -51,10 +51,6 @@ namespace ConcertMap.Data
                 .WithMany(c => c.Openers)
                 .HasForeignKey(o => o.ConcertId);
             
-            //modelBuilder.Entity<Headliner>()
-            //    .HasOne(o => o.Band)
-            //    .WithMany()
-            //    .HasForeignKey(o => o.BandId);
         }
 
         /*
